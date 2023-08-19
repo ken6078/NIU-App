@@ -11,6 +11,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     
     let screenSize:CGRect = UIScreen.main.bounds
     
+    let loginViewModel: LoginViewModel = LoginViewModel()
+    
     lazy var niuLogoImage: UIImageView = {
         let width = (screenSize.width*0.9 - 20) * 0.095 * 2
         let heigth = 58 * 230 / width / 4
@@ -97,17 +99,55 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         button.center.x = view.center.x * 0.9
         button.center.y = 422
         // action
-        button.addTarget(self, action: #selector(pressed), for: .touchUpInside)
+        button.addTarget(self, action: #selector(login), for: .touchUpInside)
         
         return button
     }()
     
-    @objc func pressed() {
+    @objc func login() {
         loginButton.isLoading = true
         accountTextField.isEnabled = false
         accountTextField.textColor = .gray
         passwordTextField.isEnabled = false
         passwordTextField.textColor = .gray
+        
+        loginViewModel.saveData(
+            account: accountTextField.text!,
+            password: passwordTextField.text!
+        )
+        
+        loginViewModel.login(
+            account: accountTextField.text!,
+            password: passwordTextField.text!,
+            success: {
+                DispatchQueue.main.async {
+                    let alertController = UIAlertController(title: "成功", message: "登入成功", preferredStyle: .alert)
+                    let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+                    alertController.addAction(okAction)
+                    self.present(alertController, animated: true, completion: nil)
+                    self.loginButton.isLoading = false
+                    self.accountTextField.isEnabled = true
+                    self.accountTextField.textColor = .black
+                    self.passwordTextField.isEnabled = true
+                    self.passwordTextField.textColor = .black
+                }
+            },
+            error: { errorMessage in
+                DispatchQueue.main.async {
+                    let alertController = UIAlertController(title: "失敗", message: errorMessage, preferredStyle: .alert)
+                    let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+                    alertController.addAction(okAction)
+                    self.present(alertController, animated: true, completion: nil)
+                    
+                    self.loginButton.isLoading = false
+                    self.accountTextField.isEnabled = true
+                    self.accountTextField.textColor = .black
+                    self.passwordTextField.isEnabled = true
+                    self.passwordTextField.textColor = .black
+
+                }
+            }
+        )
     }
     
     lazy var loginAreiaLabel: UIView = {
@@ -127,12 +167,24 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         return label
     }()
 
+    
+    let userDefault = UserDefaults()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         view.backgroundColor = UIColor(red: 0, green: 0.18, blue: 0.529, alpha: 1)
         
         view.addSubview(self.loginAreiaLabel)
+        
+        let account = userDefault.value(forKey: "account") as! String
+        let password = userDefault.value(forKey: "password") as! String
+        self.accountTextField.text = account
+        self.passwordTextField.text = password
+        if (account != "" && password != "") {
+            login()
+        }
+        
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
