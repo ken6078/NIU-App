@@ -20,8 +20,9 @@ class LoginViewModel: ObservableObject {
     }
     
     func login(account: String, password: String, time: Int = 0,
-               success: @escaping () -> (), error: @escaping (String) -> ())
-    {
+               success: @escaping (String) -> (),
+               error: @escaping (String) -> ()
+    ){
         if (account == "") {
             error("請輸入帳號")
         }
@@ -46,7 +47,7 @@ class LoginViewModel: ObservableObject {
                 // 獲取登入頁面
                 let (loginPageData, _) = try await URLSession.shared.data(for: loginRequest)
                 let loginPageHTML = String(decoding: loginPageData, as: UTF8.self)
-                let doc = try? HTML(html: loginPageHTML, encoding: .utf8)
+                var doc = try? HTML(html: loginPageHTML, encoding: .utf8)
                 // 獲取驗證碼並辨識
                 let (vaildateCodeData, _) = try await URLSession.shared.data(for: vaildateCodeRequest)
                 let validateCode = self.detactVaildateCode(data: vaildateCodeData)
@@ -72,8 +73,14 @@ class LoginViewModel: ObservableObject {
                 loginedRequest.httpMethod = "POST"
                 loginedRequest.httpBody = httpBodyString.data(using: .ascii)
                 loginedRequest.allHTTPHeaderFields = headers
-                let (loginedData, _) = try await URLSession.shared.data(for: loginedRequest)
-                let loginedHTML = String(decoding: loginedData, as: UTF8.self)
+                var (loginedData, _) = try await URLSession.shared.data(for: loginedRequest)
+                var loginedHTML = String(decoding: loginedData, as: UTF8.self)
+                if (loginedHTML.contains("您的密碼即將到期，建議儘快變更密碼。")) {
+                    print("密碼即將到期")
+                    let loginedURL = URL(string: "https://ccsys.niu.edu.tw/SSO/StdMain.aspx")!
+                    (loginedData, _) = try await URLSession.shared.data(from: loginedURL)
+                    loginedHTML = String(decoding: loginedData, as: UTF8.self)
+                }
                 // 判斷登入狀態
                 if loginedHTML.contains("目前錯誤累計已達") {
                     print("登入錯誤(密碼錯誤)")
@@ -86,10 +93,21 @@ class LoginViewModel: ObservableObject {
                     if (time == 3) {
                         error("伺服器錯誤，請稍後再試")
                     }
-                    self.login(account: account, password: password, time: time+1, success: success, error: error)
+                    self.login(
+                        account: account,
+                        password: password,
+                        time: time+1,
+                        success: success,
+                        error: error
+                    )
                 } else if loginedHTML.contains("教務項目"){
                     print("登入成功")
-                    success()
+                    // 取得使用者名稱
+                    doc = try? HTML(html: loginedHTML, encoding: .utf8)
+                    var username = doc!.xpath("//*[@id=\"Label1\"]")[0].text!
+                    username = String(username.suffix(from: username.lastIndex(of: "：")!))
+                    username = username.replacingOccurrences(of: "：", with: "")
+                    success(username)
                 } else {
                     error("伺服器錯誤，請稍後再試")
                 }
@@ -132,7 +150,7 @@ class LoginViewModel: ObservableObject {
     }
     
     init () {
-        let account = userDefault.value(forKey: "account") as! String
+        let account = userDefault.value(forKey: "account") ?? ""
         print("account: ", account)
         
         guard let modelPath = Bundle.main.path(

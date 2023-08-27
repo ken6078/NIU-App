@@ -15,7 +15,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     
     lazy var niuLogoImage: UIImageView = {
         let width = (screenSize.width*0.9 - 20) * 0.095 * 2
-        let heigth = 58 * 230 / width / 4
+        let heigth = 1151 * width / 1200
         var imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: width, height: heigth))
         guard let image = UIImage(named: "NiuLogo") else { return imageView }
         imageView.image = image
@@ -27,14 +27,14 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     }()
     
     lazy var niuLogoNameImage: UIImageView = {
-        let width = (screenSize.width*0.9 - 20) * 0.095 * 8
-        let heigth = 58 * 230 / width
+        let width = (screenSize.width*0.85) * 0.095 * 8
+        let heigth = 83 * width / 400
         var imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: width, height: heigth))
         guard let image = UIImage(named: "NiuLogoName") else { print("Can't find name");return imageView }
         imageView.image = image
         // address
         imageView.center.x = screenSize.width * 0.9 - 10 - width/2
-        imageView.center.y = 60 + heigth/2
+        imageView.center.y = 65 + heigth/2
         return imageView
     }()
     
@@ -119,17 +119,10 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         loginViewModel.login(
             account: accountTextField.text!,
             password: passwordTextField.text!,
-            success: {
+            success: { username in
                 DispatchQueue.main.async {
-                    let alertController = UIAlertController(title: "成功", message: "登入成功", preferredStyle: .alert)
-                    let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
-                    alertController.addAction(okAction)
-                    self.present(alertController, animated: true, completion: nil)
-                    self.loginButton.isLoading = false
-                    self.accountTextField.isEnabled = true
-                    self.accountTextField.textColor = .black
-                    self.passwordTextField.isEnabled = true
-                    self.passwordTextField.textColor = .black
+                    let newViewController = MenuViewController(username: username)
+                    self.navigationController!.pushViewController(newViewController, animated: false)
                 }
             },
             error: { errorMessage in
@@ -144,7 +137,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                     self.accountTextField.textColor = .black
                     self.passwordTextField.isEnabled = true
                     self.passwordTextField.textColor = .black
-
                 }
             }
         )
@@ -177,8 +169,18 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         
         view.addSubview(self.loginAreiaLabel)
         
-        let account = userDefault.value(forKey: "account") as! String
-        let password = userDefault.value(forKey: "password") as! String
+        let account: String, password: String
+        if userDefault.value(forKey: "account") != nil {
+            account = userDefault.value(forKey: "account") as! String
+        } else {
+            account = ""
+        }
+        
+        if userDefault.value(forKey: "password") != nil {
+            password = userDefault.value(forKey: "password") as! String
+        } else {
+            password = ""
+        }
         self.accountTextField.text = account
         self.passwordTextField.text = password
         if (account != "" && password != "") {
