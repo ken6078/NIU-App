@@ -30,10 +30,6 @@ class LoginViewModel: ObservableObject {
             error("請輸入密碼")
         }
         Task {
-            // 設定Header
-            let headers = [
-                "User-Agent": "Mozilla/5.0; Niu-App/0.1 (+https://github.com/ken6078/NIU-App);"
-            ]
             // 登入request
             let loginURL = URL(string: "https://ccsys.niu.edu.tw/SSO/Default.aspx")!
             var loginRequest = URLRequest(url: loginURL)

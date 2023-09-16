@@ -7,6 +7,10 @@
 
 import UIKit
 
+let headers = [
+    "User-Agent": "Mozilla/5.0; Niu-App/0.1 (+https://github.com/ken6078/NIU-App);"
+]
+
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
@@ -18,8 +22,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.backgroundColor = .systemBackground
         let nav = UINavigationController(rootViewController: LoginViewController())
         window?.rootViewController = nav
-        
-//        window?.rootViewController = LoginViewController()
         
         return true
     }
