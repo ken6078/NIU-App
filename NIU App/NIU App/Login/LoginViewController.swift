@@ -128,7 +128,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             error: { errorMessage in
                 DispatchQueue.main.async {
                     let alertController = UIAlertController(title: "失敗", message: errorMessage, preferredStyle: .alert)
-                    let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+                    var okAction = UIAlertAction(title: "確定", style: .default, handler: nil)
                     alertController.addAction(okAction)
                     self.present(alertController, animated: true, completion: nil)
                     

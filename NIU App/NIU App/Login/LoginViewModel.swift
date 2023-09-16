@@ -81,6 +81,12 @@ class LoginViewModel: ObservableObject {
                     (loginedData, _) = try await URLSession.shared.data(from: loginedURL)
                     loginedHTML = String(decoding: loginedData, as: UTF8.self)
                 }
+                if (loginedHTML.contains("請立即變更密碼!")) {
+                    print("密碼已到期")
+                    let loginedURL = URL(string: "https://ccsys.niu.edu.tw/SSO/StdMain.aspx")!
+                    (loginedData, _) = try await URLSession.shared.data(from: loginedURL)
+                    loginedHTML = String(decoding: loginedData, as: UTF8.self)
+                }
                 // 判斷登入狀態
                 if loginedHTML.contains("目前錯誤累計已達") {
                     print("登入錯誤(密碼錯誤)")
@@ -100,7 +106,7 @@ class LoginViewModel: ObservableObject {
                         success: success,
                         error: error
                     )
-                } else if loginedHTML.contains("教務項目"){
+                } else if loginedHTML.contains("系所年級"){
                     print("登入成功")
                     // 取得使用者名稱
                     doc = try? HTML(html: loginedHTML, encoding: .utf8)
