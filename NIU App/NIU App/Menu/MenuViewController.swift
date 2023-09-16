@@ -151,6 +151,7 @@ class MenuViewController: UIViewController {
         var button = UIButton(frame: CGRect(x: x, y: y, width: width, height: heigth))
         button.layer.cornerRadius = 12
         button.backgroundColor = UIColor(red: 0.655, green: 0.722, blue: 0.851, alpha: 1)
+        button.addTarget(self, action: #selector(self.activity), for: .touchUpInside)
         // icon
         let imageWidth = heigth * 0.6
         let imageHeigth = heigth * 0.6
@@ -173,6 +174,13 @@ class MenuViewController: UIViewController {
         
         return button
     }()
+    
+    @objc func activity() {
+        DispatchQueue.main.async {
+            let newViewController = CalendarViewController()
+            self.navigationController!.pushViewController(newViewController, animated: false)
+        }
+    }
     
     lazy var noteButton: UIButton = {
         let width = screenSize.width * 0.5

@@ -39,11 +39,8 @@ class CalendarViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-//        navigationItem.hidesBackButton = true
         navigationItem.title = "行事曆"
         view.backgroundColor = UIColor(red: 1, green: 1, blue: 1, alpha: 1)
-        
-        
         
         view.addSubview(pdfView)
         

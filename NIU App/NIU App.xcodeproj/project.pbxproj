@@ -18,6 +18,9 @@
 		EEF347502A91F60B00445C68 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF3474F2A91F60B00445C68 /* MenuViewController.swift */; };
 		EEF347532A9B013900445C68 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF347522A9B013900445C68 /* CalendarViewController.swift */; };
 		EEF347552A9B3A5900445C68 /* CalendarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF347542A9B3A5900445C68 /* CalendarViewModel.swift */; };
+		EEF347582A9B4D7500445C68 /* ActivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF347572A9B4D7500445C68 /* ActivityViewController.swift */; };
+		EEF3475A2A9B4DE700445C68 /* ActivityViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF347592A9B4DE700445C68 /* ActivityViewModel.swift */; };
+		EEF3475C2A9B508300445C68 /* ActivityNidek.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF3475B2A9B508300445C68 /* ActivityNidek.swift */; };
 		EEF8356A2A8D99860098A972 /* model-meta.tflite in Resources */ = {isa = PBXBuildFile; fileRef = EEF835692A8D99860098A972 /* model-meta.tflite */; };
 		EEF8356E2A90B22B0098A972 /* URLencode.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF8356D2A90B22B0098A972 /* URLencode.swift */; };
 /* End PBXBuildFile section */
@@ -38,6 +41,9 @@
 		EEF3474F2A91F60B00445C68 /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		EEF347522A9B013900445C68 /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
 		EEF347542A9B3A5900445C68 /* CalendarViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewModel.swift; sourceTree = "<group>"; };
+		EEF347572A9B4D7500445C68 /* ActivityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityViewController.swift; sourceTree = "<group>"; };
+		EEF347592A9B4DE700445C68 /* ActivityViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityViewModel.swift; sourceTree = "<group>"; };
+		EEF3475B2A9B508300445C68 /* ActivityNidek.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityNidek.swift; sourceTree = "<group>"; };
 		EEF835692A8D99860098A972 /* model-meta.tflite */ = {isa = PBXFileReference; lastKnownFileType = file; path = "model-meta.tflite"; sourceTree = "<group>"; };
 		EEF8356D2A90B22B0098A972 /* URLencode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLencode.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -111,6 +117,7 @@
 		EE85B2222A0A0215002D1EA1 /* NIU App */ = {
 			isa = PBXGroup;
 			children = (
+				EEF347562A9B4D4800445C68 /* Activity */,
 				EEF347512A9B011200445C68 /* Calendar */,
 				EEF3474E2A91F5B900445C68 /* Menu */,
 				EE4C3E462A0F27D600BA1EDC /* Login */,
@@ -139,6 +146,16 @@
 				EEF347542A9B3A5900445C68 /* CalendarViewModel.swift */,
 			);
 			path = Calendar;
+			sourceTree = "<group>";
+		};
+		EEF347562A9B4D4800445C68 /* Activity */ = {
+			isa = PBXGroup;
+			children = (
+				EEF347572A9B4D7500445C68 /* ActivityViewController.swift */,
+				EEF347592A9B4DE700445C68 /* ActivityViewModel.swift */,
+				EEF3475B2A9B508300445C68 /* ActivityNidek.swift */,
+			);
+			path = Activity;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -258,10 +275,13 @@
 			files = (
 				EEF347532A9B013900445C68 /* CalendarViewController.swift in Sources */,
 				EE4C3E482A0F27FC00BA1EDC /* LoginViewController.swift in Sources */,
+				EEF3475C2A9B508300445C68 /* ActivityNidek.swift in Sources */,
 				EE85B2282A0A0215002D1EA1 /* ViewController.swift in Sources */,
+				EEF347582A9B4D7500445C68 /* ActivityViewController.swift in Sources */,
 				EE85B2242A0A0215002D1EA1 /* AppDelegate.swift in Sources */,
 				EEF347502A91F60B00445C68 /* MenuViewController.swift in Sources */,
 				EEF8356E2A90B22B0098A972 /* URLencode.swift in Sources */,
+				EEF3475A2A9B4DE700445C68 /* ActivityViewModel.swift in Sources */,
 				EEF347552A9B3A5900445C68 /* CalendarViewModel.swift in Sources */,
 				EE4C3E4D2A1313AB00BA1EDC /* LoginViewModel.swift in Sources */,
 				EE4C3E4A2A0F6E9500BA1EDC /* LoaderButton.swift in Sources */,
