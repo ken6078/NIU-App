@@ -17,7 +17,7 @@ Develop with [Apple Swift](https://developer.apple.com/swift/).
  - [x] 學校行事曆
  - [ ] 天氣預報
  - [ ] 學校活動系統
-   - [ ] 查看活動
+   - [X] 查看活動
    - [ ] 報名活動
    - [ ] 活動紀錄
  - [ ] 教務系統
