@@ -28,8 +28,10 @@ class CalendarViewController: UIViewController {
             }
         } else {
             calendarViewModel.savePdf(urlString: url, fileName: "calendar") {
-                self.calendarViewModel.showSavedPdf(url: url, fileName: "calendar"){ url in
-                    self.pdfView.document = PDFDocument(url: url)
+                DispatchQueue.main.async {
+                    self.calendarViewModel.showSavedPdf(url: url, fileName: "calendar"){ url in
+                        self.pdfView.document = PDFDocument(url: url)
+                    }
                 }
             }
         }

@@ -177,7 +177,7 @@ class MenuViewController: UIViewController {
     
     @objc func activity() {
         DispatchQueue.main.async {
-            let newViewController = CalendarViewController()
+            let newViewController = ActivityViewController()
             self.navigationController!.pushViewController(newViewController, animated: false)
         }
     }

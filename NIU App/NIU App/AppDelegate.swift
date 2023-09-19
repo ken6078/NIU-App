@@ -22,7 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.backgroundColor = .systemBackground
         let nav = UINavigationController(rootViewController: LoginViewController())
         window?.rootViewController = nav
-        
+        window?.overrideUserInterfaceStyle = .light
         return true
     }
 }
