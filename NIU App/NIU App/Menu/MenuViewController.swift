@@ -11,6 +11,8 @@ class MenuViewController: UIViewController {
     
     let screenSize:CGRect = UIScreen.main.bounds
     
+    let weatherViewModel: WeatherViewModel = WeatherViewModel()
+    
     let username: String
     
     required init?(coder: NSCoder) {
@@ -67,6 +69,57 @@ class MenuViewController: UIViewController {
         var view = UIView(frame: CGRect(x: x, y: y, width: width, height: heigth))
         view.layer.cornerRadius = 12
         view.backgroundColor = UIColor(red: 0.454, green: 0.738, blue: 1, alpha: 1)
+        
+        let loadingLabel = UILabel()
+        loadingLabel.frame = CGRect(x: 5, y: 5, width: width-10, height: heigth-10)
+        loadingLabel.text = "載入中..."
+        loadingLabel.textAlignment = .center
+        view.addSubview(loadingLabel)
+        
+        Task {
+            let weather = await weatherViewModel.getWeatherInformation()
+            
+            let tempLabel = UILabel()
+            tempLabel.frame = CGRect(x: width*0.5, y: heigth*0.15, width: width*0.5, height: heigth*0.40)
+            tempLabel.font = UIFont.systemFont(ofSize: 28)
+            tempLabel.text = weather.TEMP.description + "°C"
+            view.addSubview(tempLabel)
+            
+            let humdLabel = UILabel()
+            humdLabel.frame = CGRect(x: width*0.5, y: heigth*0.45, width: width*0.5, height: heigth*0.40)
+            humdLabel.font = UIFont.systemFont(ofSize: 20)
+            humdLabel.textAlignment = .left
+            humdLabel.text = (weather.HUMD*100).description + "%"
+            view.addSubview(humdLabel)
+            
+            var imageView = UIImageView(frame: CGRect(x: 15, y: 0, width: heigth*0.6, height: heigth*0.6))
+            imageView.center.y = heigth/2
+            let image: UIImage
+            
+            if (weather.status == .cloud) {
+                view.backgroundColor = UIColor(red: 0.086, green: 0.401, blue: 0.692, alpha: 1)
+                image = UIImage(named: "cloud")!
+                tempLabel.textColor = .white
+                humdLabel.textColor = .white
+            } else if (weather.status == .rain) {
+                view.backgroundColor = UIColor(red: 0.133, green: 0.337, blue: 0.525, alpha: 1)
+                image = UIImage(named: "rain")!
+                tempLabel.textColor = .white
+                humdLabel.textColor = .white
+            } else if (weather.status == .storm){
+                view.backgroundColor = UIColor(red: 0.045, green: 0.28, blue: 0.496, alpha: 1)
+                image = UIImage(named: "storm")!
+                tempLabel.textColor = .white
+                humdLabel.textColor = .white
+            } else {
+                image = UIImage(named: "sun")!
+            }
+            imageView.image = image
+            view.addSubview(imageView)
+            
+            loadingLabel.removeFromSuperview()
+        }
+        
         return view
     }()
     

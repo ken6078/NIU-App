@@ -10,6 +10,8 @@
 		0FF52B52CCC3BB0301106F51 /* Pods_NIU_App.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC9A36BD04FED5B5CE2EE956 /* Pods_NIU_App.framework */; };
 		EE3F49DE2AB829BE0039C777 /* ActivityCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE3F49DD2AB829BE0039C777 /* ActivityCell.swift */; };
 		EE3F49E02AB9B3310039C777 /* ImageWithColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE3F49DF2AB9B3310039C777 /* ImageWithColor.swift */; };
+		EE3F49E72ABAD7AD0039C777 /* WeatherModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE3F49E62ABAD7AD0039C777 /* WeatherModel.swift */; };
+		EE3F49E92ABAD7CA0039C777 /* WeatherViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE3F49E82ABAD7CA0039C777 /* WeatherViewModel.swift */; };
 		EE4C3E482A0F27FC00BA1EDC /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4C3E472A0F27FC00BA1EDC /* LoginViewController.swift */; };
 		EE4C3E4A2A0F6E9500BA1EDC /* LoaderButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4C3E492A0F6E9500BA1EDC /* LoaderButton.swift */; };
 		EE4C3E4D2A1313AB00BA1EDC /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4C3E4C2A1313AB00BA1EDC /* LoginViewModel.swift */; };
@@ -33,6 +35,8 @@
 		AC9A36BD04FED5B5CE2EE956 /* Pods_NIU_App.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NIU_App.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EE3F49DD2AB829BE0039C777 /* ActivityCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityCell.swift; sourceTree = "<group>"; };
 		EE3F49DF2AB9B3310039C777 /* ImageWithColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageWithColor.swift; sourceTree = "<group>"; };
+		EE3F49E62ABAD7AD0039C777 /* WeatherModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherModel.swift; sourceTree = "<group>"; };
+		EE3F49E82ABAD7CA0039C777 /* WeatherViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherViewModel.swift; sourceTree = "<group>"; };
 		EE4C3E472A0F27FC00BA1EDC /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		EE4C3E492A0F6E9500BA1EDC /* LoaderButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoaderButton.swift; sourceTree = "<group>"; };
 		EE4C3E4C2A1313AB00BA1EDC /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
@@ -79,6 +83,15 @@
 				5079883C676FAE1534AF85CE /* Pods-NIU App.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		EE3F49E52ABAD79F0039C777 /* Weather */ = {
+			isa = PBXGroup;
+			children = (
+				EE3F49E62ABAD7AD0039C777 /* WeatherModel.swift */,
+				EE3F49E82ABAD7CA0039C777 /* WeatherViewModel.swift */,
+			);
+			path = Weather;
 			sourceTree = "<group>";
 		};
 		EE4C3E462A0F27D600BA1EDC /* Login */ = {
@@ -139,6 +152,7 @@
 		EEF3474E2A91F5B900445C68 /* Menu */ = {
 			isa = PBXGroup;
 			children = (
+				EE3F49E52ABAD79F0039C777 /* Weather */,
 				EEF3474F2A91F60B00445C68 /* MenuViewController.swift */,
 			);
 			path = Menu;
@@ -279,6 +293,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EE3F49E92ABAD7CA0039C777 /* WeatherViewModel.swift in Sources */,
 				EEF347532A9B013900445C68 /* CalendarViewController.swift in Sources */,
 				EE4C3E482A0F27FC00BA1EDC /* LoginViewController.swift in Sources */,
 				EEF3475C2A9B508300445C68 /* ActivityModel.swift in Sources */,
@@ -291,6 +306,7 @@
 				EEF3475A2A9B4DE700445C68 /* ActivityViewModel.swift in Sources */,
 				EEF347552A9B3A5900445C68 /* CalendarViewModel.swift in Sources */,
 				EE4C3E4D2A1313AB00BA1EDC /* LoginViewModel.swift in Sources */,
+				EE3F49E72ABAD7AD0039C777 /* WeatherModel.swift in Sources */,
 				EE4C3E4A2A0F6E9500BA1EDC /* LoaderButton.swift in Sources */,
 				EE3F49E02AB9B3310039C777 /* ImageWithColor.swift in Sources */,
 			);
