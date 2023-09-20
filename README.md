@@ -8,14 +8,14 @@ Develop with [Apple Swift](https://developer.apple.com/swift/).
 
 # 專案截圖
 <p float="left">
-  <img src="https://github.com/ken6078/NIU-App-iOS/blob/feature/general-framework/screenshot/loginPage.png?raw=true" width="200" />
-  <img src="https://github.com/ken6078/NIU-App-iOS/blob/feature/general-framework/screenshot/menuPage.png?raw=true" width="200" />
+  <img src="https://raw.githubusercontent.com/ken6078/NIU-App-iOS/develop/screenshot/loginPage.png" width="200" />
+  <img src="https://raw.githubusercontent.com/ken6078/NIU-App-iOS/develop/screenshot/menuPage.png" width="200" />
 </p>
 
 # 支援功能
  - [x] 登入
  - [x] 學校行事曆
- - [ ] 天氣預報
+ - [x] 天氣預報
  - [ ] 學校活動系統
    - [X] 查看活動
    - [ ] 報名活動
