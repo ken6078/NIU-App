@@ -36,6 +36,7 @@ class Activity {
     var maximumWaitlistLimit: Int
     var select: Bool = false
     
+    // MARK: init(node)
     init (node: Kanna.XMLElement) {
         let cols = node.xpath("//td")
         
@@ -98,6 +99,7 @@ class Activity {
         }
     }
     
+    // MARK: init
     init(
         id: Int, name: String, organizer: String,
         startDate: Date, endDate: Date,

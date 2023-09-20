@@ -13,6 +13,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     
     let loginViewModel: LoginViewModel = LoginViewModel()
     
+    let userDefault = UserDefaults()
+    
+    // MARK: niuLogoImage
     lazy var niuLogoImage: UIImageView = {
         let width = (screenSize.width*0.9 - 20) * 0.095 * 2
         let heigth = 1151 * width / 1200
@@ -26,6 +29,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         return imageView
     }()
     
+    // MARK: niuLogoNameImage
     lazy var niuLogoNameImage: UIImageView = {
         let width = (screenSize.width*0.85) * 0.095 * 8
         let heigth = 83 * width / 400
@@ -38,6 +42,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         return imageView
     }()
     
+    // MARK: accountTextField
     lazy var accountTextField: UITextField = {
         let width = screenSize.width * 0.9 * 0.9
         let textField = UITextField(frame: CGRect(x: 0, y: 0, width: width, height: 64))
@@ -63,6 +68,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         return textField
     }()
     
+    // MARK: passwordTextField
     lazy var passwordTextField: UITextField = {
         let labelWidth = screenSize.width * 0.9 * 0.9
         let textField = UITextField(frame: CGRect(x: 0, y: 0, width: labelWidth, height: 64))
@@ -89,6 +95,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         return textField
     }()
     
+    // MARK: loginButton
     lazy var loginButton: LoaderButton =  {
         let button = LoaderButton(frame: CGRect(x: 0, y: 0, width: 136, height: 60))
         button.layer.cornerRadius = 30
@@ -104,6 +111,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         return button
     }()
     
+    // MARK: login
     @objc func login() {
         loginButton.isLoading = true
         accountTextField.isEnabled = false
@@ -142,6 +150,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         )
     }
     
+    // MARK: loginAreiaLabel
     lazy var loginAreiaLabel: UIView = {
         let label = UIView()
         label.layer.backgroundColor = CGColor(red: 1, green: 1, blue: 1, alpha: 1)
@@ -158,10 +167,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         
         return label
     }()
-
     
-    let userDefault = UserDefaults()
-    
+    // MARK: viewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -189,6 +196,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         
     }
     
+    // MARK: textFieldShouldReturn
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         //Do something...
         view.endEditing(true)

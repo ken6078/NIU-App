@@ -8,6 +8,7 @@
 import Foundation
 
 extension String {
+    // MARK: urlEncoded
     func urlEncoded() -> String {
         var reault = self
         reault = reault.replacingOccurrences(of: "+", with: "%2B")

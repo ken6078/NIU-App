@@ -9,11 +9,13 @@ import UIKit
 
 extension UIImage {
     
+    // MARK: init
     convenience init?(imageName: String) {
         self.init(named: imageName)
         accessibilityIdentifier = imageName
     }
     
+    // MARK: imageWithColor
     // https://stackoverflow.com/a/40177870/4488252
     func imageWithColor (newColor: UIColor?) -> UIImage? {
 
@@ -36,7 +38,7 @@ extension UIImage {
             newImage.accessibilityIdentifier = accessibilityIdentifier
             return newImage
         }
-
+        
         if let accessibilityIdentifier = accessibilityIdentifier {
             return UIImage(imageName: accessibilityIdentifier)
         }
