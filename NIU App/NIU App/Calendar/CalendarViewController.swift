@@ -13,6 +13,7 @@ class CalendarViewController: UIViewController {
     let calendarViewModel = CalendarViewModel()
     let screenSize:CGRect = UIScreen.main.bounds
     
+    // MARK: pdfView
     lazy var pdfView: PDFView = {
         let width = screenSize.width * 1.0
         let heigth = screenSize.height * 0.89
@@ -37,7 +38,7 @@ class CalendarViewController: UIViewController {
         }
         return pdfView
     }()
-    
+    // MARK: viewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.

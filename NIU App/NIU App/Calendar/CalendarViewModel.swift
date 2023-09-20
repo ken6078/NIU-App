@@ -8,6 +8,7 @@
 import Foundation
 
 class CalendarViewModel {
+    // MARK: pdfFileAlreadySaved
     func pdfFileAlreadySaved(url:String, fileName:String)-> Bool {
         var status = false
         if #available(iOS 10.0, *) {
@@ -26,6 +27,7 @@ class CalendarViewModel {
         return status
     }
     
+    // MARK: showSavedPdf
     func showSavedPdf(url:String, fileName:String, show: @escaping (URL) -> ()) {
         if #available(iOS 10.0, *) {
             do {
@@ -44,6 +46,7 @@ class CalendarViewModel {
         }
     }
 
+    // MARK: savePdf
     func savePdf(urlString:String, fileName:String, success: @escaping () -> ()) {
         Task {
             let url = URL(string: urlString)

@@ -16,20 +16,22 @@ class ActivityViewController: UIViewController, UITableViewDataSource, UITableVi
     
     var selectRow: Int = 1
     
-    lazy var loadingText: UITextView = {
-        var textView = UITextView()
+    // MARK: loadingLabel
+    lazy var loadingLabel: UILabel = {
+        var textLabel = UILabel()
         
-        textView.frame = CGRect(x: 0, y: 0, width: screenSize.width, height: 200)
-        textView.center.x = screenSize.width / 2
-        textView.center.y = screenSize.height / 2
+        textLabel.frame = CGRect(x: 0, y: 0, width: screenSize.width, height: 200)
+        textLabel.center.x = screenSize.width / 2
+        textLabel.center.y = screenSize.height / 2
         
-        textView.textAlignment = .center
-        textView.font = UIFont.systemFont(ofSize: 24)
-        textView.text = "載入中~"
+        textLabel.textAlignment = .center
+        textLabel.font = UIFont.systemFont(ofSize: 24)
+        textLabel.text = "載入中..."
         
-        return textView
+        return textLabel
     }()
 
+    // MARK: tableView
     lazy var tableView: UITableView = {
         var tableView = UITableView()
         
@@ -51,6 +53,7 @@ class ActivityViewController: UIViewController, UITableViewDataSource, UITableVi
         return tableView
     }()
     
+    // MARK: errorAlert
     func errorAlert(message: String) {
         DispatchQueue.main.async {
             let alertController = UIAlertController(
@@ -64,13 +67,14 @@ class ActivityViewController: UIViewController, UITableViewDataSource, UITableVi
         }
     }
     
+    // MARK: viewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         navigationItem.title = "活動"
         view.backgroundColor = UIColor(red: 1, green: 1, blue: 1, alpha: 1)
         
-        view.addSubview(loadingText)
+        view.addSubview(loadingLabel)
         
         
         Task{
@@ -81,16 +85,18 @@ class ActivityViewController: UIViewController, UITableViewDataSource, UITableVi
             }
             DispatchQueue.main.async {
                 self.view.addSubview(self.tableView)
+                self.loadingLabel.removeFromSuperview()
             }
             
         }
     }
     
-    
+    // MARK: tableView row count
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         activitys.count
     }
     
+    // MARK: set tableView row cell
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "ActivityCell", for: indexPath) as? ActivityCell else {
             fatalError("ActivityCell is not defined!")
@@ -100,6 +106,7 @@ class ActivityViewController: UIViewController, UITableViewDataSource, UITableVi
         return cell
     }
     
+    // MARK: set tableView row click
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         selectRow = indexPath.row
         activitys[indexPath.row].select = !activitys[indexPath.row].select

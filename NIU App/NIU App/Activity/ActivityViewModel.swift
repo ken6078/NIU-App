@@ -14,11 +14,13 @@ class ActivityViewModel {
     let account: String
     let password: String
     
+    // MARK: init
     init() {
         account = userDefault.value(forKey: "account") as! String
         password = userDefault.value(forKey: "password") as! String
     }
     
+    // MARK: getInformation
     func getInformation() async -> [Activity] {
         var activitys: [Activity] = []
         

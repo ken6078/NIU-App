@@ -14,11 +14,13 @@ class LoginViewModel: ObservableObject {
     let userDefault = UserDefaults()
     let options: ImageClassifierOptions
     
+    // MARK: saveData
     func saveData(account: String, password: String) {
         userDefault.setValue(account, forKey: "account");
         userDefault.setValue(password, forKey: "password");
     }
     
+    // MARK: login
     func login(account: String, password: String, time: Int = 0,
                success: @escaping (String) -> (),
                error: @escaping (String) -> ()
@@ -121,6 +123,7 @@ class LoginViewModel: ObservableObject {
         }
     }
     
+    // MARK: detactVaildateCode
     func detactVaildateCode(data: Data) -> String {
         let xOffsets = [10, 35, 60, 85, 110, 135]
         let yOffset = 5
@@ -151,6 +154,7 @@ class LoginViewModel: ObservableObject {
         return result
     }
     
+    // MARK: init
     init () {
         let account = userDefault.value(forKey: "account") ?? ""
         print("account: ", account)

@@ -8,6 +8,7 @@
 import Foundation
 
 class WeatherViewModel {
+    // MARK: getWeatherInformation
     func getWeatherInformation() async -> Weather {
         let url = URL(string: "https://opendata.cwa.gov.tw/api/v1/rest/datastore/O-A0003-001?Authorization=CWB-53A3CA8D-61F3-4264-BDB2-E36CB7988719&stationId=467080")!
         var request = URLRequest(url: url)

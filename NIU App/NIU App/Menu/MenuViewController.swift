@@ -15,6 +15,7 @@ class MenuViewController: UIViewController {
     
     let username: String
     
+    // MARK: init
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -25,6 +26,7 @@ class MenuViewController: UIViewController {
         super.init(nibName: nil, bundle: nil)
     }
     
+    // MARK: nameLabel
     lazy var nameLabel: UILabel = {
         let width = screenSize.width * 0.7
         let heigth = screenSize.height * 0.08
@@ -38,6 +40,7 @@ class MenuViewController: UIViewController {
         return nameLabel
     }()
     
+    // MARK: userButton
     lazy var userButton: UIButton = {
         let width = screenSize.width * 0.16
         let heigth = screenSize.width * 0.16
@@ -60,6 +63,7 @@ class MenuViewController: UIViewController {
         return button
     }()
     
+    // MARK: weatherLayout
     lazy var weatherLayout: UIView = {
         let width = screenSize.width * 0.5
         let heigth = width*(110/200)
@@ -123,6 +127,7 @@ class MenuViewController: UIViewController {
         return view
     }()
     
+    // MARK: calendarButton
     lazy var calendarButton: UIButton = {
         let width = screenSize.width * 0.3
         let heigth = width*(110/200)*(5/3)
@@ -156,6 +161,7 @@ class MenuViewController: UIViewController {
         return button
     }()
     
+    // MARK: calendar
     @objc func calendar() {
         DispatchQueue.main.async {
             let newViewController = CalendarViewController()
@@ -163,6 +169,7 @@ class MenuViewController: UIViewController {
         }
     }
     
+    // MARK: timeTabelButton
     lazy var timeTabelButton: UIButton = {
         let width = screenSize.width * 0.3
         let heigth = width*(110/200)*(5/3)
@@ -195,6 +202,7 @@ class MenuViewController: UIViewController {
         return button
     }()
     
+    // MARK: activityButton
     lazy var activityButton: UIButton = {
         let width = screenSize.width * 0.3
         let heigth = width*(110/200)*(5/3)
@@ -228,6 +236,7 @@ class MenuViewController: UIViewController {
         return button
     }()
     
+    // MARK: activity
     @objc func activity() {
         DispatchQueue.main.async {
             let newViewController = ActivityViewController()
@@ -235,6 +244,7 @@ class MenuViewController: UIViewController {
         }
     }
     
+    // MARK: noteButton
     lazy var noteButton: UIButton = {
         let width = screenSize.width * 0.5
         let unitHeigth = width*(110/200)
@@ -268,6 +278,7 @@ class MenuViewController: UIViewController {
         return button
     }()
     
+    // MARK: scoreButton
     lazy var scoreButton: UIButton = {
         let width = screenSize.width * 0.3
         let heigth = width*(110/200)*(5/3)
@@ -300,6 +311,7 @@ class MenuViewController: UIViewController {
         return button
     }()
     
+    // MARK: graduateButton
     lazy var graduateButton: UIButton = {
         let width = screenSize.width * 0.5
         let heigth = width*(110/200)
@@ -332,6 +344,7 @@ class MenuViewController: UIViewController {
         return button
     }()
     
+    // MARK: leaveButton
     lazy var leaveButton: UIButton = {
         let width = screenSize.width * 0.5
         let heigth = width*(110/200)
@@ -364,6 +377,7 @@ class MenuViewController: UIViewController {
         return button
     }()
     
+    // MARK: moreButton
     lazy var moreButton: UIButton = {
         let width = screenSize.width * 0.3
         let heigth = width*(110/200)*(5/3)
@@ -386,6 +400,7 @@ class MenuViewController: UIViewController {
         return button
     }()
     
+    // MARK: selectPannel
     lazy var selectPannel: UIScrollView = {
         let width = screenSize.width * 0.83
         let heigth = screenSize.height * 0.83
@@ -411,6 +426,7 @@ class MenuViewController: UIViewController {
         return scrollView
     }()
     
+    // MARK: viewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.

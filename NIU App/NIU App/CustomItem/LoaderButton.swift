@@ -15,6 +15,7 @@ class LoaderButton: UIButton {
         }
     }
     
+    // MARK: init
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupView()
@@ -25,6 +26,7 @@ class LoaderButton: UIButton {
         setupView()
     }
     
+    // MARK: setupView
     func setupView() {
         spinner.hidesWhenStopped = true
         // to change spinner color
@@ -42,7 +44,7 @@ class LoaderButton: UIButton {
         ])
     }
     
-    // 7
+    // MARK: updateView
     func updateView() {
         if isLoading {
             spinner.startAnimating()

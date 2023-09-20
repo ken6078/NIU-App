@@ -11,6 +11,7 @@ class ActivityCell: UITableViewCell {
     
     let screenSize:CGRect = UIScreen.main.bounds
     
+    // MARK: nameLabel
     lazy var nameLabel: UILabel = {
         var label = UILabel()
         
@@ -21,6 +22,7 @@ class ActivityCell: UITableViewCell {
         return label
     }()
     
+    // MARK: statusLabel
     lazy var statusLabel: UILabel = {
         var label = UILabel()
         
@@ -30,6 +32,7 @@ class ActivityCell: UITableViewCell {
         return label
     }()
     
+    // MARK: rightArrowImageView
     func rightArrowImageView() -> UIImageView {
         let image = UIImage(systemName: "chevron.right")!.imageWithColor(newColor: .black)
         let imageView = UIImageView(image: image)
@@ -38,6 +41,7 @@ class ActivityCell: UITableViewCell {
         return imageView
     }
     
+    // MARK: timeLabel
     func timeLabel(activity: Activity) -> UILabel {
         let label = UILabel()
 
@@ -55,6 +59,7 @@ class ActivityCell: UITableViewCell {
         return label
     }
     
+    // MARK: peopleAndIdLabel
     func peopleAndIdLabel(activity: Activity) -> UILabel {
         let label = UILabel()
 
@@ -69,6 +74,7 @@ class ActivityCell: UITableViewCell {
         return label
     }
     
+    // MARK: informationLayout
     func informationLayout(activity: Activity) -> UIView {
         let view = UIView()
         view.frame = CGRect(x: 0, y: 5, width: screenSize.width*0.95, height: 70)
@@ -95,6 +101,7 @@ class ActivityCell: UITableViewCell {
         return view
     }
     
+    // MARK: moreInformationLayout
     func moreInformationLayout(activity: Activity) -> UIView{
         let view = UIView()
         view.frame = CGRect(x: 0, y: 5, width: screenSize.width*0.95, height: 70)
@@ -115,13 +122,12 @@ class ActivityCell: UITableViewCell {
         return view
     }
     
+    // MARK: configure
     func configure (activity: Activity) {
         if (activity.select == false) {
             addSubview(informationLayout(activity: activity))
         } else {
             addSubview(moreInformationLayout(activity: activity))
         }
-            
-        
     }
 }
