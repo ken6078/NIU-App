@@ -56,7 +56,8 @@ class Activity {
         
         // 活動名稱
         self.name = node.at_xpath("//h3")?.text ?? ""
-        self.name = self.name.replacingOccurrences(of: "\r\n", with: "")
+        self.name = self.name.replacingOccurrences(of: "\r", with: "")
+        self.name = self.name.replacingOccurrences(of: "\n", with: "")
         self.name = self.name.replacingOccurrences(of: " ", with: "")
         
         // 認證種類
@@ -123,6 +124,20 @@ class Activity {
         self.certifiedType = certifiedType
         self.certifiedStatus = certifiedStatus
         self.people = people
+    }
+    
+    // MARK: init
+    init(){
+        self.id = 0
+        self.name = "測試活動"
+        self.organizer = "測試主辦單位"
+        self.startDate = Date()
+        self.endDate = Date()
+        self.status = .unable
+        self.certifiedStatus = .none
+        self.certifiedType = .none
+        self.people = "正取：44/60\t備取：0/10"
+
     }
     
     // MARK: checkStatus(status)
