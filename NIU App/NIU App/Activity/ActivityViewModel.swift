@@ -24,21 +24,21 @@ class ActivityViewModel {
     func getInformation() async -> [Activity] {
         var activitys: [Activity] = []
         
-        let activityURL = URL(string: "https://syscc.niu.edu.tw/activity/")!
+        let activityURL = URL(string: "https://ccsys.niu.edu.tw/MvcTeam/Act")!
         var activityRequest = URLRequest(url: activityURL)
         activityRequest.allHTTPHeaderFields = headers
         do {
             let (activityPageData, _) = try await URLSession.shared.data(for: activityRequest)
             let activityPageHTML = String(decoding: activityPageData, as: UTF8.self)
             let doc = try? HTML(html: activityPageHTML, encoding: .utf8)
-            let table = doc!.xpath("//tr")
+            let idtable = doc!.xpath("//div[contains(@id,.)]")
+            let activetable = doc!.xpath("//div[contains(@class, 'enr-list-sec')]")
             
-            for rowIndex in 0...table.count {
-                if (rowIndex == 0) {continue}
-                if (rowIndex == table.count-1) {break}
-                
-                let row = table[rowIndex]
-                activitys.append(Activity(node: row))
+            for rowIndex in 0...activetable.count {
+                if rowIndex == activetable.count {break}
+                let id = Int(idtable[rowIndex]["id"]!) ?? 0
+                let row = activetable[rowIndex]
+                activitys.append(Activity(id: id, node: row))
             }
         } catch {
             print("error")

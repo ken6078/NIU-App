@@ -16,8 +16,16 @@ enum ActivityStatus {
 }
 
 enum CertifiedStatus {
-    case unable
-    case enable
+    case unable //未認證
+    case enable //已認證
+    case none   //非認證
+}
+
+enum CertifiedType {
+    case service //服務奉獻
+    case growth  //多元成長
+    case major   //專業進取
+    case none    //非認證
 }
 
 class Activity {
@@ -26,73 +34,73 @@ class Activity {
     var name: String
     var startDate: Date
     var endDate: Date
-    var applyStartDate: Date
-    var applyEndDate: Date
     var status: ActivityStatus
+    var certifiedType: CertifiedType
     var certifiedStatus: CertifiedStatus
-    var numberOfParticipants: Int
-    var maximumParticipantLimit: Int
-    var waitlistNumber: Int
-    var maximumWaitlistLimit: Int
+    var people: String
     var select: Bool = false
     
-    // MARK: init(node)
-    init (node: Kanna.XMLElement) {
-        let cols = node.xpath("//td")
-        
+    // MARK: init(id, node)
+    init (id: Int, node: Kanna.XMLElement) {
+        let nodeText = node.text!
         let dateFormatter = DateFormatter()
         dateFormatter.locale = Locale(identifier: "zh-TW")
-        dateFormatter.dateFormat = "yyyy/MM/dd HH:mm"
+        dateFormatter.dateFormat = "yyyy/MM/ddahh:mm:ss"
         
         // 編號
-        var col = cols[1]
-        self.id = Int(col.text!) ?? 0
+        self.id = id
         
         // 主辦單位
-        col = cols[2]
-        self.organizer = col.text!
+        let organizerString = node.at_xpath("//div[contains(@class, 'enr-list-dep-nam')]")!["title"]!
+        self.organizer = String(organizerString.split(separator: "：").last!)
         
         // 活動名稱
-        col = cols[3]
-        let divs = col.xpath("div")
-        self.name = divs.first?.text ?? ""
-        self.name = self.name.replacingOccurrences(of: "\n", with: "")
+        self.name = node.at_xpath("//h3")?.text ?? ""
+        self.name = self.name.replacingOccurrences(of: "\r\n", with: "")
+        self.name = self.name.replacingOccurrences(of: " ", with: "")
         
-        // 認證狀態
-        col = cols[4]
-        if (col.text! == "已認證") {
-            self.certifiedStatus = .enable
+        // 認證種類
+        if nodeText.contains("多元成長") {
+            self.certifiedType = .growth
+        } else if nodeText.contains("服務奉獻") {
+            self.certifiedType = .service
+        } else if nodeText.contains("專業進取") {
+            self.certifiedType = .major
         } else {
-            self.certifiedStatus = .unable
+            self.certifiedType = .none
         }
         
-        // 報名起訖
-        col = cols[5]
-        var spans = col.xpath("//span")
-        self.applyStartDate = dateFormatter.date(from:spans[0].text!)!
-        self.applyEndDate = dateFormatter.date(from:spans[2].text!)!
+        // 認證狀態
+        if nodeText.contains("已認證") {
+            self.certifiedStatus = .enable
+        } else if nodeText.contains("未認證") {
+            self.certifiedStatus = .unable
+        } else {
+            self.certifiedStatus = .none
+        }
         
         // 活動期間
-        col = cols[6]
-        spans = col.xpath("//span")
-        self.startDate = dateFormatter.date(from:spans[0].text!)!
-        self.endDate = dateFormatter.date(from:spans[2].text!)!
+        var timeString = (node.at_xpath("//i[contains(@class, 'calendar')]")?.parent?.text)!
+        timeString = timeString.replacingOccurrences(of: "\r\n", with: "")
+        timeString = timeString.replacingOccurrences(of: " ", with: "")
+        let timeList = timeString.components(separatedBy: "~")
+        self.startDate = dateFormatter.date(from:timeList[0])!
+        self.endDate = dateFormatter.date(from:timeList[1])!
         
         //報名人數
-        col = cols[7]
-        spans = col.xpath("//span")
-        self.numberOfParticipants = Int(spans[1].text!)!
-        self.maximumParticipantLimit = Int(spans[3].text!)!
-        self.waitlistNumber = Int(spans[6].text!)!
-        self.maximumWaitlistLimit = Int(spans[8].text!)!
+        var peopleString = (node.at_xpath("//i[contains(@class, 'user')]")?.parent?.text)!
+        peopleString = peopleString.replacingOccurrences(of: "\r\n", with: "")
+        peopleString = peopleString.replacingOccurrences(of: " ", with: "")
+        peopleString = peopleString.replacingOccurrences(of: "，", with: "\t")
+        self.people = peopleString
         
         // 報名狀態
-        col = cols[8]
-        if (col.text! == "報名中") {
+        if nodeText.contains("報名中") {
             self.status = .enable
-        } else if (col.text! == "已額滿") {
-            self.status = .full
-        } else if (col.text! == "已過期") {
+            if Activity.checkStatus(status: self.people) {
+                self.status = .full
+            }
+        } else if nodeText.contains("報名已截止") {
             self.status = .expried
         } else {
             self.status = .unable
@@ -103,23 +111,31 @@ class Activity {
     init(
         id: Int, name: String, organizer: String,
         startDate: Date, endDate: Date,
-        applyStartDate: Date, applyEndDate: Date,
-        status: ActivityStatus, certifiedStatus: CertifiedStatus,
-        numberOfParticipants: Int, maximumParticipantLimit: Int,
-        waitlistNumber: Int, maximumWaitlistLimit: Int
+        status: ActivityStatus, certifiedType: CertifiedType, certifiedStatus: CertifiedStatus,
+        people: String
     ) {
         self.id = id
         self.name = name
         self.organizer = organizer
         self.startDate = startDate
         self.endDate = endDate
-        self.applyStartDate = applyStartDate
-        self.applyEndDate = applyEndDate
         self.status = status
+        self.certifiedType = certifiedType
         self.certifiedStatus = certifiedStatus
-        self.numberOfParticipants = numberOfParticipants
-        self.maximumParticipantLimit = maximumParticipantLimit
-        self.waitlistNumber = waitlistNumber
-        self.maximumWaitlistLimit = maximumWaitlistLimit
+        self.people = people
+    }
+    
+    // MARK: checkStatus(status)
+    static func checkStatus(status: String) -> Bool {
+        let split = status.components(separatedBy: "\t")
+        for element in split {
+            var number = element.components(separatedBy: "：").last!
+            number = number.replacingOccurrences(of: " ", with: "")
+            let list = number.components(separatedBy: "/")
+            if list[0] != list[1]{
+                return false
+            }
+        }
+        return true
     }
 }

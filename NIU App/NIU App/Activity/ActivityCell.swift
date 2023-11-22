@@ -25,10 +25,10 @@ class ActivityCell: UITableViewCell {
     // MARK: statusLabel
     lazy var statusLabel: UILabel = {
         var label = UILabel()
-        
-        label.frame = CGRect(x: screenSize.width*0.6 + 30, y: 0, width: 45, height: 70)
+        label.frame = CGRect(x: screenSize.width*0.6 + 25, y: 0, width: 70, height: 70)
         label.font = UIFont.systemFont(ofSize: 14)
-        label.numberOfLines = 0
+        label.textAlignment = .center
+        label.numberOfLines = 2
         return label
     }()
     
@@ -67,8 +67,7 @@ class ActivityCell: UITableViewCell {
         label.font = UIFont.systemFont(ofSize: 14)
         label.numberOfLines = 0
         
-        label.text = "正取：\(activity.numberOfParticipants)/\(activity.maximumParticipantLimit)\t"
-        label.text! += "備取：\(activity.waitlistNumber)/\(activity.maximumWaitlistLimit)\t"
+        label.text = "\(activity.people)\t"
         label.text! += "ID：\(activity.id)"
         
         return label
@@ -91,6 +90,18 @@ class ActivityCell: UITableViewCell {
         } else {
             self.statusLabel.text = "未開放"
             view.backgroundColor = UIColor(red: 0.908, green: 0.908, blue: 0.908, alpha: 1)
+        }
+        
+        self.statusLabel.text! += "\n"
+        
+        if activity.certifiedType == .major {
+            self.statusLabel.text! += "專業進取"
+        } else if activity.certifiedType == .service {
+            self.statusLabel.text! += "服務奉獻"
+        } else if activity.certifiedType == .growth {
+            self.statusLabel.text! += "多元成長"
+        } else {
+            self.statusLabel.text! += "非認證"
         }
         
         nameLabel.text = activity.name
