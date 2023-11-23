@@ -19,6 +19,12 @@
 		EE85B2282A0A0215002D1EA1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE85B2272A0A0215002D1EA1 /* ViewController.swift */; };
 		EE85B22D2A0A0216002D1EA1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EE85B22C2A0A0216002D1EA1 /* Assets.xcassets */; };
 		EE85B2302A0A0216002D1EA1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EE85B22E2A0A0216002D1EA1 /* LaunchScreen.storyboard */; };
+		EEDB2EAF2B0DFE7300933FF3 /* ViewToUIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEDB2EAE2B0DFE7300933FF3 /* ViewToUIImage.swift */; };
+		EEDB2EB32B0E005D00933FF3 /* ActivityApplyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEDB2EB22B0E005D00933FF3 /* ActivityApplyViewController.swift */; };
+		EEDB2EB52B0E006700933FF3 /* ActivityApplyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEDB2EB42B0E006700933FF3 /* ActivityApplyViewModel.swift */; };
+		EEDB2EB72B0E00DA00933FF3 /* ActivityDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEDB2EB62B0E00DA00933FF3 /* ActivityDetailViewController.swift */; };
+		EEDB2EB92B0E010100933FF3 /* ActivityDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEDB2EB82B0E010100933FF3 /* ActivityDetailViewModel.swift */; };
+		EEDB2EBB2B0E02F800933FF3 /* ActivityDetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEDB2EBA2B0E02F800933FF3 /* ActivityDetailModel.swift */; };
 		EEF347502A91F60B00445C68 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF3474F2A91F60B00445C68 /* MenuViewController.swift */; };
 		EEF347532A9B013900445C68 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF347522A9B013900445C68 /* CalendarViewController.swift */; };
 		EEF347552A9B3A5900445C68 /* CalendarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF347542A9B3A5900445C68 /* CalendarViewModel.swift */; };
@@ -46,6 +52,12 @@
 		EE85B22C2A0A0216002D1EA1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EE85B22F2A0A0216002D1EA1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EE85B2312A0A0216002D1EA1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EEDB2EAE2B0DFE7300933FF3 /* ViewToUIImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewToUIImage.swift; sourceTree = "<group>"; };
+		EEDB2EB22B0E005D00933FF3 /* ActivityApplyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityApplyViewController.swift; sourceTree = "<group>"; };
+		EEDB2EB42B0E006700933FF3 /* ActivityApplyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityApplyViewModel.swift; sourceTree = "<group>"; };
+		EEDB2EB62B0E00DA00933FF3 /* ActivityDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityDetailViewController.swift; sourceTree = "<group>"; };
+		EEDB2EB82B0E010100933FF3 /* ActivityDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityDetailViewModel.swift; sourceTree = "<group>"; };
+		EEDB2EBA2B0E02F800933FF3 /* ActivityDetailModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityDetailModel.swift; sourceTree = "<group>"; };
 		EEF3474F2A91F60B00445C68 /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		EEF347522A9B013900445C68 /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
 		EEF347542A9B3A5900445C68 /* CalendarViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewModel.swift; sourceTree = "<group>"; };
@@ -110,6 +122,7 @@
 				EE4C3E492A0F6E9500BA1EDC /* LoaderButton.swift */,
 				EEF8356D2A90B22B0098A972 /* URLencode.swift */,
 				EE3F49DF2AB9B3310039C777 /* ImageWithColor.swift */,
+				EEDB2EAE2B0DFE7300933FF3 /* ViewToUIImage.swift */,
 			);
 			path = CustomItem;
 			sourceTree = "<group>";
@@ -149,6 +162,25 @@
 			path = "NIU App";
 			sourceTree = "<group>";
 		};
+		EEDB2EB02B0DFFF100933FF3 /* Detail */ = {
+			isa = PBXGroup;
+			children = (
+				EEDB2EB62B0E00DA00933FF3 /* ActivityDetailViewController.swift */,
+				EEDB2EB82B0E010100933FF3 /* ActivityDetailViewModel.swift */,
+				EEDB2EBA2B0E02F800933FF3 /* ActivityDetailModel.swift */,
+			);
+			path = Detail;
+			sourceTree = "<group>";
+		};
+		EEDB2EB12B0DFFFC00933FF3 /* Apply */ = {
+			isa = PBXGroup;
+			children = (
+				EEDB2EB22B0E005D00933FF3 /* ActivityApplyViewController.swift */,
+				EEDB2EB42B0E006700933FF3 /* ActivityApplyViewModel.swift */,
+			);
+			path = Apply;
+			sourceTree = "<group>";
+		};
 		EEF3474E2A91F5B900445C68 /* Menu */ = {
 			isa = PBXGroup;
 			children = (
@@ -170,6 +202,8 @@
 		EEF347562A9B4D4800445C68 /* Activity */ = {
 			isa = PBXGroup;
 			children = (
+				EEDB2EB12B0DFFFC00933FF3 /* Apply */,
+				EEDB2EB02B0DFFF100933FF3 /* Detail */,
 				EEF347572A9B4D7500445C68 /* ActivityViewController.swift */,
 				EEF347592A9B4DE700445C68 /* ActivityViewModel.swift */,
 				EEF3475B2A9B508300445C68 /* ActivityModel.swift */,
@@ -293,6 +327,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EEDB2EB32B0E005D00933FF3 /* ActivityApplyViewController.swift in Sources */,
 				EE3F49E92ABAD7CA0039C777 /* WeatherViewModel.swift in Sources */,
 				EEF347532A9B013900445C68 /* CalendarViewController.swift in Sources */,
 				EE4C3E482A0F27FC00BA1EDC /* LoginViewController.swift in Sources */,
@@ -303,12 +338,17 @@
 				EEF347502A91F60B00445C68 /* MenuViewController.swift in Sources */,
 				EE3F49DE2AB829BE0039C777 /* ActivityCell.swift in Sources */,
 				EEF8356E2A90B22B0098A972 /* URLencode.swift in Sources */,
+				EEDB2EB52B0E006700933FF3 /* ActivityApplyViewModel.swift in Sources */,
 				EEF3475A2A9B4DE700445C68 /* ActivityViewModel.swift in Sources */,
+				EEDB2EAF2B0DFE7300933FF3 /* ViewToUIImage.swift in Sources */,
 				EEF347552A9B3A5900445C68 /* CalendarViewModel.swift in Sources */,
 				EE4C3E4D2A1313AB00BA1EDC /* LoginViewModel.swift in Sources */,
 				EE3F49E72ABAD7AD0039C777 /* WeatherModel.swift in Sources */,
+				EEDB2EBB2B0E02F800933FF3 /* ActivityDetailModel.swift in Sources */,
 				EE4C3E4A2A0F6E9500BA1EDC /* LoaderButton.swift in Sources */,
+				EEDB2EB72B0E00DA00933FF3 /* ActivityDetailViewController.swift in Sources */,
 				EE3F49E02AB9B3310039C777 /* ImageWithColor.swift in Sources */,
+				EEDB2EB92B0E010100933FF3 /* ActivityDetailViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
