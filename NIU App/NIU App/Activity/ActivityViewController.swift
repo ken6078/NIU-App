@@ -114,63 +114,65 @@ class ActivityViewController: UIViewController, UITableViewDataSource, UITableVi
     }
     
     // MARK: swipeAction
-        // https://stackoverflow.com/questions/56588715
-        internal func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-            let detailAction = UIContextualAction(style: .normal, title: nil) { (action, view, completionHandler) in
-                DispatchQueue.main.async {
-                    let newViewController = ActivityDetailViewController()
-                    if #available(iOS 15.0, *) {
-                        newViewController.sheetPresentationController?.detents = [.medium()]
-                    }
-                    newViewController.activity = self.activitys[indexPath.row]
-                    self.present(newViewController, animated: true)
+    // https://stackoverflow.com/questions/56588715
+    internal func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let detailAction = UIContextualAction(style: .normal, title: nil) { (action, view, completionHandler) in
+            DispatchQueue.main.async {
+                let newViewController = ActivityDetailViewController()
+                if #available(iOS 15.0, *) {
+                    newViewController.sheetPresentationController?.detents = [.medium(),.large()]
+                    newViewController.sheetPresentationController?.prefersGrabberVisible = false
+                    newViewController.sheetPresentationController?.prefersScrollingExpandsWhenScrolledToEdge = true
                 }
-                completionHandler(false)
+                newViewController.activity = self.activitys[indexPath.row]
+                self.present(newViewController, animated: true, completion: nil)
             }
-            let applyAction = UIContextualAction(style: .normal, title: nil) { (action, view, completionHandler) in
-                DispatchQueue.main.async {
-                    let newViewController = ActivityApplyViewController()
-                    if #available(iOS 15.0, *) {
-                        newViewController.sheetPresentationController?.detents = [.medium()]
-                    }
-                    newViewController.activity = self.activitys[indexPath.row]
-                    self.present(newViewController, animated: true)
-                }
-                completionHandler(true)
-            }
-
-            let detailView = UIView(frame: CGRect(x: 0, y: 0, width: 80, height: 80))
-            detailView.backgroundColor = UIColor(red: 0.604, green: 0.604, blue: 0.604, alpha: 1)
-            detailView.layer.cornerRadius = 12
-            let detailLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 80, height: 80))
-            detailLabel.center = detailView.center
-            detailLabel.font = UIFont.systemFont(ofSize: 16)
-            detailLabel.text = "詳細資料"
-            detailLabel.textColor = .white
-            detailLabel.textAlignment = .center
-            detailView.addSubview(detailLabel)
-            detailAction.image = UIImage(view: detailView)
-
-            let applyView = UIView(frame: CGRect(x: 0, y: 0, width: 80, height: 80))
-            applyView.backgroundColor = UIColor(red: 1, green: 0.604, blue: 0.604, alpha: 1)
-            applyView.layer.cornerRadius = 12
-            let applyLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 80, height: 80))
-            applyLabel.center = detailView.center
-            applyLabel.font = UIFont.systemFont(ofSize: 16)
-            applyLabel.text = "報名"
-            applyLabel.textColor = .white
-            applyLabel.textAlignment = .center
-            applyView.addSubview(applyLabel)
-            applyAction.image = UIImage(view: applyView)
-
-            detailAction.backgroundColor = .white
-            applyAction.backgroundColor = .white
-
-            if (activitys[indexPath.row].status == .enable) {
-                return UISwipeActionsConfiguration(actions: [applyAction, detailAction])
-            } else {
-                return UISwipeActionsConfiguration(actions: [detailAction])
-            }
+            completionHandler(false)
         }
+        let applyAction = UIContextualAction(style: .normal, title: nil) { (action, view, completionHandler) in
+            DispatchQueue.main.async {
+                let newViewController = ActivityApplyViewController()
+                if #available(iOS 15.0, *) {
+                    newViewController.sheetPresentationController?.detents = [.medium()]
+                }
+                newViewController.activity = self.activitys[indexPath.row]
+                self.present(newViewController, animated: true)
+            }
+            completionHandler(true)
+        }
+
+        let detailView = UIView(frame: CGRect(x: 0, y: 0, width: 80, height: 80))
+        detailView.backgroundColor = UIColor(red: 0.604, green: 0.604, blue: 0.604, alpha: 1)
+        detailView.layer.cornerRadius = 12
+        let detailLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 80, height: 80))
+        detailLabel.center = detailView.center
+        detailLabel.font = UIFont.systemFont(ofSize: 16)
+        detailLabel.text = "詳細資料"
+        detailLabel.textColor = .white
+        detailLabel.textAlignment = .center
+        detailView.addSubview(detailLabel)
+        detailAction.image = UIImage(view: detailView)
+
+        let applyView = UIView(frame: CGRect(x: 0, y: 0, width: 80, height: 80))
+        applyView.backgroundColor = UIColor(red: 1, green: 0.604, blue: 0.604, alpha: 1)
+        applyView.layer.cornerRadius = 12
+        let applyLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 80, height: 80))
+        applyLabel.center = detailView.center
+        applyLabel.font = UIFont.systemFont(ofSize: 16)
+        applyLabel.text = "報名"
+        applyLabel.textColor = .white
+        applyLabel.textAlignment = .center
+        applyView.addSubview(applyLabel)
+        applyAction.image = UIImage(view: applyView)
+
+        detailAction.backgroundColor = .white
+        applyAction.backgroundColor = .white
+
+        if (activitys[indexPath.row].status == .enable) {
+            return UISwipeActionsConfiguration(actions: [applyAction, detailAction])
+        } else {
+            return UISwipeActionsConfiguration(actions: [detailAction])
+        }
+    }
 
 }
