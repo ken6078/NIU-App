@@ -8,6 +8,7 @@
 import Foundation
 import UIKit
 
+// https://stackoverflow.com/questions/24263007/how-to-use-hex-color-values
 extension UIColor {
    convenience init(red: Int, green: Int, blue: Int) {
        assert(red >= 0 && red <= 255, "Invalid red component")
