@@ -25,6 +25,7 @@
 		EEDB2EB72B0E00DA00933FF3 /* ActivityDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEDB2EB62B0E00DA00933FF3 /* ActivityDetailViewController.swift */; };
 		EEDB2EB92B0E010100933FF3 /* ActivityDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEDB2EB82B0E010100933FF3 /* ActivityDetailViewModel.swift */; };
 		EEDB2EBB2B0E02F800933FF3 /* ActivityDetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEDB2EBA2B0E02F800933FF3 /* ActivityDetailModel.swift */; };
+		EEDB2EBD2B17362B00933FF3 /* HexToUIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEDB2EBC2B17362B00933FF3 /* HexToUIColor.swift */; };
 		EEF347502A91F60B00445C68 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF3474F2A91F60B00445C68 /* MenuViewController.swift */; };
 		EEF347532A9B013900445C68 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF347522A9B013900445C68 /* CalendarViewController.swift */; };
 		EEF347552A9B3A5900445C68 /* CalendarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF347542A9B3A5900445C68 /* CalendarViewModel.swift */; };
@@ -58,6 +59,7 @@
 		EEDB2EB62B0E00DA00933FF3 /* ActivityDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityDetailViewController.swift; sourceTree = "<group>"; };
 		EEDB2EB82B0E010100933FF3 /* ActivityDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityDetailViewModel.swift; sourceTree = "<group>"; };
 		EEDB2EBA2B0E02F800933FF3 /* ActivityDetailModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityDetailModel.swift; sourceTree = "<group>"; };
+		EEDB2EBC2B17362B00933FF3 /* HexToUIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HexToUIColor.swift; sourceTree = "<group>"; };
 		EEF3474F2A91F60B00445C68 /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		EEF347522A9B013900445C68 /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
 		EEF347542A9B3A5900445C68 /* CalendarViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewModel.swift; sourceTree = "<group>"; };
@@ -123,6 +125,7 @@
 				EEF8356D2A90B22B0098A972 /* URLencode.swift */,
 				EE3F49DF2AB9B3310039C777 /* ImageWithColor.swift */,
 				EEDB2EAE2B0DFE7300933FF3 /* ViewToUIImage.swift */,
+				EEDB2EBC2B17362B00933FF3 /* HexToUIColor.swift */,
 			);
 			path = CustomItem;
 			sourceTree = "<group>";
@@ -338,6 +341,7 @@
 				EEF347502A91F60B00445C68 /* MenuViewController.swift in Sources */,
 				EE3F49DE2AB829BE0039C777 /* ActivityCell.swift in Sources */,
 				EEF8356E2A90B22B0098A972 /* URLencode.swift in Sources */,
+				EEDB2EBD2B17362B00933FF3 /* HexToUIColor.swift in Sources */,
 				EEDB2EB52B0E006700933FF3 /* ActivityApplyViewModel.swift in Sources */,
 				EEF3475A2A9B4DE700445C68 /* ActivityViewModel.swift in Sources */,
 				EEDB2EAF2B0DFE7300933FF3 /* ViewToUIImage.swift in Sources */,
